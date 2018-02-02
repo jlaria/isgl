@@ -1,0 +1,46 @@
+
+R version 3.4.2 (2017-09-28) -- "Short Summer"
+Copyright (C) 2017 The R Foundation for Statistical Computing
+Platform: x86_64-conda_cos6-linux-gnu (64-bit)
+
+R is free software and comes with ABSOLUTELY NO WARRANTY.
+You are welcome to redistribute it under certain conditions.
+Type 'license()' or 'licence()' for distribution details.
+
+  Natural language support but running in an English locale
+
+R is a collaborative project with many contributors.
+Type 'contributors()' for more information and
+'citation()' on how to cite R or R packages in publications.
+
+Type 'demo()' for some demos, 'help()' for on-line help, or
+'help.start()' for an HTML browser interface to help.
+Type 'q()' to quit R.
+
+> pbs_R_path = '~/miniconda2/bin/R '
+> pbs_jobname = 'Sim120logit'
+> pbs_nodes = 4
+> pbs_cores = 1
+> pbs_walltime = '48:00:00'
+> run_scripts = '#!/bin/sh\n'
+> 
+> wd = paste0(getwd(), '/')
+> 
+> script = paste0('#PBS -N ', pbs_jobname, '\n',
++                 '#PBS -o ', wd, pbs_jobname,'.o\n',
++                 '#PBS -e ', wd, pbs_jobname,'.e\n',
++                 '#PBS -m abe -M jlaria@est-econ.uc3m.es\n',
++                 '#PBS -l nodes=', pbs_nodes, ',walltime=',pbs_walltime, '\n',
++                 '\n',
++                 'cd ', wd, '\n',
++                 pbs_R_path,' CMD BATCH logit.R\n')
+> cat(script, file = paste0(wd,'script.pbs'))
+> 
+> run_scripts = paste0(run_scripts, 
++                      'cd ', wd, '\n',
++                      'qsub script.pbs\n')
+> cat(run_scripts, file='run_scripts.sh')
+> 
+> proc.time()
+   user  system elapsed 
+  0.268   0.041   0.295 

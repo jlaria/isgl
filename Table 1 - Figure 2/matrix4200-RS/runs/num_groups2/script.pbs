@@ -1,0 +1,8 @@
+#PBS -N Sim4200groups2
+#PBS -o /home/juank/Documents/Doctorado/Investigacion/uranus.uc3m.es/PBS/matrix4200-RS/runs/num_groups2/Sim4200groups2.o
+#PBS -e /home/juank/Documents/Doctorado/Investigacion/uranus.uc3m.es/PBS/matrix4200-RS/runs/num_groups2/Sim4200groups2.e
+#PBS -m abe -M jlaria@est-econ.uc3m.es
+#PBS -l nodes=16,walltime=48:00:00
+
+cd /home/juank/Documents/Doctorado/Investigacion/uranus.uc3m.es/PBS/matrix4200-RS/runs/num_groups2/
+~/miniconda2/bin/R  CMD BATCH run.R

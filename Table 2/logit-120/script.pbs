@@ -1,0 +1,8 @@
+#PBS -N Prueba1
+#PBS -o /home/jmmarin/simulaciones/experimento1/Prueba1.o
+#PBS -e /home/jmmarin/simulaciones/experimento1/Prueba1.e
+#PBS -m abe -M jmmarin@est-econ.uc3m.es
+#PBS -l nodes=4,walltime=48:00:00
+
+cd /home/jmmarin/simulaciones/experimento1/
+~/miniconda3/bin/R CMD BATCH Lee.R
