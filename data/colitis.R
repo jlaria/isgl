@@ -10,7 +10,7 @@ library(GEOquery)
 library(GSA)
 
 ### This is the code used to analyze the Cancer dataset in the manuscript
-gds1615 <- getGEO('GDS1615', destdir = "~/readingSoft/")
+gds1615 <- getGEO('GDS1615', destdir = "../data/readingSoft/")
 
 ## This preprocesses it
 
@@ -27,7 +27,7 @@ Gene.Identifiers <- Table(gds1615)[,2]
 
 ## The following code creates the group index using the C1 genesets
 
-filename="C1.gmt"
+filename="../data/C1.gmt"
 junk1=GSA.read.gmt(filename)
 
 index <- rep(0,length(Gene.Identifiers))
@@ -54,4 +54,4 @@ for(i in 1:277){
   }
 }
 
-save(X, y, membership.index, file="colitis.RData")
+save(X, y, membership.index, file="../data/colitis.RData")
